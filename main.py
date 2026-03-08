@@ -5,6 +5,7 @@ Main file for Magma Boy and Hydro Girl game.
 # import pygame and other needed libraries
 import sys
 import pygame
+import asyncio
 from pygame.locals import *
 
 # import classes
@@ -25,7 +26,7 @@ def main():
     show_intro_screen(game, controller)
 
 
-def show_intro_screen(game, controller):
+async def show_intro_screen(game, controller):
     game.display.fill((200, 200, 200))
 
     font_title = pygame.font.Font(None, 55)
@@ -82,6 +83,7 @@ def show_intro_screen(game, controller):
     game.display.blit(t7, t7.get_rect(center=(screen_width // 2, 380)))
 
     while True:
+        await asyncio.sleep(0)
         game.refresh_window()
         if controller.press_key(pygame.event.get(), K_RETURN):
             show_level_screen(game, controller)
@@ -91,7 +93,7 @@ def show_level_screen(game, controller):
     run_game(game, controller, level)
 
 
-def show_gucci_warning(game, controller):
+async def show_gucci_warning(game, controller):
     """Gucci Kurtarma Operasyonu - Gizli Uyarı Ekranı"""
     game.display.fill((0, 0, 0))  # Siyah arka plan
 
@@ -110,22 +112,25 @@ def show_gucci_warning(game, controller):
     game.display.blit(text3, (90, 300))
 
     while True:
+        await asyncio.sleep(0)
         game.refresh_window()
         # Oyuncu ENTER'a basana kadar bu siyah ekranda kalır
         if controller.press_key(pygame.event.get(), K_RETURN):
             break
-def show_win_screen(game, controller):
+async def show_win_screen(game, controller):
     win_screen = pygame.image.load('data/screens/win_screen.png')
     win_screen.set_colorkey((255, 0, 255))
     game.display.blit(win_screen, (0, 0))
 
+
     while True:
+        await asyncio.sleep(0)
         game.refresh_window()
         if controller.press_key(pygame.event.get(), K_RETURN):
             show_level_screen(game, controller)
 
 
-def show_gucci_win_screen(game, controller):
+async def show_gucci_win_screen(game, controller):
     gucci_screen = pygame.image.load('data/gucci_rescue.png').convert_alpha()
     gucci_screen = pygame.transform.smoothscale(gucci_screen, (600, 400))
 
@@ -136,13 +141,15 @@ def show_gucci_win_screen(game, controller):
 
     game.display.blit(gucci_screen, (x, y))
 
+
     while True:
+        await asyncio.sleep(0)
         game.refresh_window()
         if controller.press_key(pygame.event.get(), K_RETURN):
             show_level_screen(game, controller)
 
 
-def show_womens_day_screen(game, controller):
+async def show_womens_day_screen(game, controller):
     game.display.fill((20, 0, 10))
 
     # Yazı tiplerini ve boyutlarını daha sığacak şekilde ayarladık (50, 25)
@@ -173,12 +180,13 @@ def show_womens_day_screen(game, controller):
     game.display.blit(text3_surf, t3_rect)
 
     while True:
+        await asyncio.sleep(0)
         game.refresh_window()
         if controller.press_key(pygame.event.get(), K_RETURN):
             break
 
 
-def ily_screen(game, controller):
+async def ily_screen(game, controller):
     game.display.fill((20, 0, 10))
 
     # Yazı tiplerini ve boyutlarını daha sığacak şekilde ayarladık (50, 25)
@@ -209,12 +217,13 @@ def ily_screen(game, controller):
     game.display.blit(text3_surf, t3_rect)
 
     while True:
+        await asyncio.sleep(0)
         game.refresh_window()
         if controller.press_key(pygame.event.get(), K_RETURN):
             break
 
 
-def lps_screen(game, controller):
+async def lps_screen(game, controller):
     game.display.fill((20, 0, 10))
 
     # Yazı tiplerini ve boyutlarını daha sığacak şekilde ayarladık (50, 25)
@@ -245,14 +254,16 @@ def lps_screen(game, controller):
     game.display.blit(text3_surf, t3_rect)
 
     while True:
+        await asyncio.sleep(0)
         game.refresh_window()
         if controller.press_key(pygame.event.get(), K_RETURN):
             break
-def show_death_screen(game, controller, level):
+async def show_death_screen(game, controller, level):
     death_screen = pygame.image.load('data/screens/death_screen.png')
     death_screen.set_colorkey((255, 0, 255))
     game.display.blit(death_screen, (0, 0))
     while True:
+        await asyncio.sleep(0)
         game.refresh_window()
         events = pygame.event.get()
         if controller.press_key(events, K_RETURN):
@@ -261,7 +272,7 @@ def show_death_screen(game, controller, level):
             show_level_screen(game, controller)
 
 
-def run_game(game, controller, level="level1"):
+async def run_game(game, controller, level="level1"):
     # load level data
     if level == "level1":
         show_womens_day_screen(game, controller)
@@ -369,6 +380,7 @@ def run_game(game, controller, level="level1"):
 
     # main game loop
     while True:
+        await asyncio.sleep(0)
         # pygame management
         clock.tick(60)
         events = pygame.event.get()
@@ -470,4 +482,4 @@ def run_game(game, controller, level="level1"):
 
 
 if __name__ == '__main__':
-    main()
+    asyncio.run(main())
