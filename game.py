@@ -16,7 +16,7 @@ class Game:
         # create external pygame window
         WINDOW_SIZE = (640, 480)
         self.screen = pygame.display.set_mode(WINDOW_SIZE, pygame.RESIZABLE)
-        pygame.display.set_caption("Magma Boy and Hydro Girl")
+        pygame.display.set_caption("Ali ile Ela El Ele")
 
         # create internal pygame window
         CHUNK_SIZE = 16
@@ -72,8 +72,8 @@ class Game:
             0: "level1",
             1: "level2",
             2: "level3",
-            3: "level1",
-            4: "level1"
+            3: "level4",
+            4: "level5"
         }
         while True:
             # draw the level selection screen

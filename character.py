@@ -73,17 +73,23 @@ class Character:
 
 class MagmaBoy(Character):
     def __init__(self, location):
-        self.image = pygame.image.load('data/player_images/magmaboy.png')
+        self.image = pygame.image.load('data/player_images/magmaboy.png').convert_alpha()
+        self.image = pygame.transform.smoothscale(self.image, (24, 40))
         self.side_image = pygame.image.load(
             'data/player_images/magmaboyside.png')
+        self.side_image = pygame.image.load('data/player_images/magmaboyside.png').convert_alpha()
+        self.side_image = pygame.transform.smoothscale(self.side_image, (24, 40))
         self._type = "magma"
         super().__init__(location)
 
 
 class HydroGirl(Character):
     def __init__(self, location):
-        self.image = pygame.image.load('data/player_images/hydrogirl.png')
+        self.image = pygame.image.load('data/player_images/hydrogirl.png').convert_alpha()
+        self.image = pygame.transform.smoothscale(self.image, (24, 40))
         self.side_image = pygame.image.load(
             'data/player_images/hydrogirlside.png')
+        self.side_image = pygame.image.load('data/player_images/hydrogirlside.png').convert_alpha()
+        self.side_image = pygame.transform.smoothscale(self.side_image, (24, 40))
         self._type = "water"
         super().__init__(location)
