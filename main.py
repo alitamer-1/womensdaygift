@@ -81,8 +81,7 @@ async def show_intro_screen(game, controller):
 
 async def show_level_screen(game, controller):
     level_select = LevelSelect()
-    level = game.user_select_level(level_select, controller)
-    # DÜZELTME: await eklendi
+    level = await game.user_select_level(level_select, controller)
     await run_game(game, controller, level)
 
 

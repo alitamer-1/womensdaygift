@@ -1,4 +1,5 @@
 import sys
+import asyncio
 import pygame
 from pygame.locals import *
 
@@ -51,7 +52,7 @@ class Game:
         self.display.blit(level_select.left_player, left_cords)
         self.display.blit(level_select.right_player, right_cords)
 
-    def user_select_level(self, level_select, controller):
+    async def user_select_level(self, level_select, controller):
         """
         Allow for user to select level.
 
@@ -101,6 +102,8 @@ class Game:
             if controller.press_key(events, K_RETURN):
                 # return the name of the level using dict
                 return level_dict[level_index]
+
+            await asyncio.sleep(0)
 
     def draw_level_select_indicator(self, level_select, level_index):
         """
